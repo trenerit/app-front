@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CarsService } from '../cars-service';
 import { CarModel } from '../../models/car-model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal';
+import { AddModCar } from '../add-mod-car/add-mod-car';
 
 @Component({
   selector: 'app-main-cars',
@@ -10,7 +12,10 @@ import { CarModel } from '../../models/car-model';
 })
 export class MainCars {
 
-  constructor(private readonly carsService: CarsService) {}
+  constructor(
+    private readonly carsService: CarsService,
+    private readonly modalService: NgbModal
+  ) {}
 
   cars: any = [];
 
@@ -32,5 +37,12 @@ export class MainCars {
         this.getCars();
       });
     }
+  }
+
+  openModal(action?: string, event?: Event): void {
+    if(action) {
+      event?.stopPropagation();
+    }
+    this.modalService.open(AddModCar, {size: 'lg'})
   }
 }

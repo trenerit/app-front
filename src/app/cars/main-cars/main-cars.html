@@ -16,11 +16,11 @@
         <td>{{ car.model }}</td>
         <td>{{ car.price }}zł</td>
         <td>
-          <button type="button" class="btn btn-warning btn-sm">Modyfikuj</button>
+          <button (click)="openModal('mod', $event)" type="button" class="btn btn-warning btn-sm">Modyfikuj</button>
           <button (click)="delCar(car.id, $event)" type="button" class="btn btn-danger btn-sm">Usuń</button>
         </td>
       </tr>
     }
   </tbody>
 </table>
-<button type="button" class="btn btn-primary">Dodaj</button>
+<button (click)="openModal()" type="button" class="btn btn-primary">Dodaj</button>

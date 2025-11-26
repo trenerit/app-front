@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { MainCars } from './main-cars/main-cars';
 import { AppRoutingModule } from "../app-routing-module";
 import { ViewCar } from './view-car/view-car';
+import { AddModCar } from './add-mod-car/add-mod-car';
 
 
 
 @NgModule({
-  declarations: [MainCars, ViewCar],
+  declarations: [MainCars, ViewCar, AddModCar],
   imports: [
     CommonModule,
     AppRoutingModule
