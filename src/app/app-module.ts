@@ -8,6 +8,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { Header } from './shared/header/header';
 import { SharedModule } from './shared/shared-module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SharedModule } from './shared/shared-module';
     // HttpClientModule,
     RouterOutlet,
     RouterLink,
-    SharedModule
+    SharedModule,
+    NgbModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

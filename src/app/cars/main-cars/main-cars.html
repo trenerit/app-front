@@ -9,16 +9,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr [routerLink]="['/view-car', car.id]" *ngFor="let car of cars; let i = index;">
-      <th scope="row">{{ i + 1 }}</th>
-      <td>{{ car.brand }}</td>
-      <td>{{ car.model }}</td>
-      <td>{{ car.price }}zł</td>
-      <td>
-        <button type="button" class="btn btn-warning btn-sm">Modyfikuj</button>
-        <button (click)="delCar(car.id, $event)" type="button" class="btn btn-danger btn-sm">Usuń</button>
-      </td>
-    </tr>
+    @for (car of cars; track car; let i = $index) {
+      <tr [routerLink]="['/view-car', car.id]">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ car.brand }}</td>
+        <td>{{ car.model }}</td>
+        <td>{{ car.price }}zł</td>
+        <td>
+          <button type="button" class="btn btn-warning btn-sm">Modyfikuj</button>
+          <button (click)="delCar(car.id, $event)" type="button" class="btn btn-danger btn-sm">Usuń</button>
+        </td>
+      </tr>
+    }
   </tbody>
 </table>
 <button type="button" class="btn btn-primary">Dodaj</button>
