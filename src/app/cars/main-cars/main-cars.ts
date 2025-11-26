@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CarsService } from '../cars-service';
+import { CarModel } from '../../models/car-model';
 
 @Component({
   selector: 'app-main-cars',
