@@ -16,7 +16,7 @@ export class ViewCar {
     private readonly route: ActivatedRoute
   ) {}
   
-    car: any = [];
+    car?: CarModel;
   
     ngOnInit() {
       this.getCar();
@@ -25,7 +25,6 @@ export class ViewCar {
     getCar(): void {
        const carId: number = this.route.snapshot.params['id'];
       this.carsService.getCar(carId).subscribe(data => {
-        console.log(data);
         this.car = data;
       });
     }

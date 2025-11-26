@@ -20,7 +20,6 @@ export class MainCars {
 
   getCars(): void {
     this.carsService.getCars().subscribe(data => {
-      console.log(data);
       this.cars = data;
     });
   }
