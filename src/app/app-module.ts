@@ -9,6 +9,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { Header } from './shared/header/header';
 import { SharedModule } from './shared/shared-module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RouterOutlet,
     RouterLink,
     SharedModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

@@ -1,16 +1,17 @@
-<form>
+<form #carForm="ngForm" (ngSubmit)="onSave(carForm)">
     <div>
         <label for="brand" class="form-label">Marka samochodu</label>
-        <input class="form-control" id="brand">
+        <input name="brand" [(ngModel)]="carInputForm.brand" class="form-control" id="brand">
     </div>
     <div>
         <label for="model" class="form-label">Model samochodu</label>
-        <input class="form-control" id="model">
+        <input name="model" [(ngModel)]="carInputForm.model" class="form-control" id="model">
     </div>
     <div>
         <label for="price" class="form-label">Cena za 1h</label>
-        <input type="number" class="form-control" id="price">
+        <input name="price" [(ngModel)]="carInputForm.price" type="number" class="form-control" id="price">
     </div>
-    <button class="btn btn-secondary">Wyjdź</button> 
-    <button class="btn btn-primary">Zapisz</button> 
+    <button type="reset" (click)="onClose()" class="btn btn-secondary">Wyjdź</button> 
+    <button *ngIf="add" class="btn btn-primary">Zapisz Add</button> 
+    <button *ngIf="!add" class="btn btn-primary">Zapisz Mod</button> 
 </form>

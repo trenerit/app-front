@@ -49,7 +49,10 @@ export class MainCars {
 
     modalRef.result.then(
       (result) => {
-        console.log('okno zamknięte' + result)
+        const res = result.save;
+        if(res) {
+          this.getCars();
+        }
       }
     )
 

@@ -4,6 +4,7 @@ import { MainCars } from './main-cars/main-cars';
 import { AppRoutingModule } from "../app-routing-module";
 import { ViewCar } from './view-car/view-car';
 import { AddModCar } from './add-mod-car/add-mod-car';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -11,7 +12,8 @@ import { AddModCar } from './add-mod-car/add-mod-car';
   declarations: [MainCars, ViewCar, AddModCar],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
 ]
 })
 export class CarsModule { }
