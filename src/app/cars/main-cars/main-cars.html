@@ -16,8 +16,8 @@
         <td>{{ car.model }}</td>
         <td>{{ car.price }}zł</td>
         <td>
-          <button (click)="openModal('mod', $event)" type="button" class="btn btn-warning btn-sm">Modyfikuj</button>
-          <button (click)="delCar(car.id, $event)" type="button" class="btn btn-danger btn-sm">Usuń</button>
+          <button (click)="openModal('mod', $event, car)" type="button" class="btn btn-warning btn-sm">Modyfikuj</button>
+          <button (click)="delCar(car.id!, $event)" type="button" class="btn btn-danger btn-sm">Usuń</button>
         </td>
       </tr>
     }

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CarModel } from '../../models/car-model';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-mod-car',
@@ -6,6 +8,15 @@ import { Component } from '@angular/core';
   templateUrl: './add-mod-car.html',
   styleUrl: './add-mod-car.scss',
 })
-export class AddModCar {
+export class AddModCar implements OnInit {
+
+  @Input() car!: CarModel;
+
+  constructor(public activeModal: NgbActiveModal) {}
+
+  ngOnInit(): void {
+    console.log('car in modal', this.car);
+    console.log('active modal', this.activeModal);
+  }
 
 }

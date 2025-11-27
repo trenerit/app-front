@@ -12,12 +12,12 @@ import { AddModCar } from '../add-mod-car/add-mod-car';
 })
 export class MainCars {
 
+  cars: CarModel[] = [];
+  
   constructor(
     private readonly carsService: CarsService,
     private readonly modalService: NgbModal
   ) {}
-
-  cars: any = [];
 
   ngOnInit() {
     this.getCars();
@@ -39,10 +39,19 @@ export class MainCars {
     }
   }
 
-  openModal(action?: string, event?: Event): void {
-    if(action) {
+  openModal(action?: string, event?: Event, carFromHtml?: CarModel): void {
+    if(action === 'mod') {
       event?.stopPropagation();
     }
-    this.modalService.open(AddModCar, {size: 'lg'})
+    const modalRef = this.modalService.open(AddModCar, {size: 'lg'});
+
+    modalRef.componentInstance.car = carFromHtml;
+
+    modalRef.result.then(
+      (result) => {
+        console.log('okno zamknięte' + result)
+      }
+    )
+
   }
 }
