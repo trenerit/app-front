@@ -18,6 +18,10 @@ export class AddModCar {
 
   protected idCar: number = 0;
 
+  protected startObject = {};
+  
+  protected endObject = {};
+
   constructor(
     public activeModal: NgbActiveModal,
     protected readonly carsService: CarsService,
@@ -28,6 +32,7 @@ export class AddModCar {
     // console.log('active modal', this.activeModal);
 
     if(this.car) {
+
       this.carInputForm = {brand: this.car.brand, model: this.car.model, price: this.car.price};
       this.idCar = this.car.id!;
     } else {
@@ -58,6 +63,7 @@ export class AddModCar {
   }
   
   protected onClose() {
+    
     this.activeModal.close({save: false});
   }
 
