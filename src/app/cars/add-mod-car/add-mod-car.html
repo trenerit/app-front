@@ -12,6 +12,5 @@
         <input name="price" [(ngModel)]="carInputForm.price" type="number" class="form-control" id="price">
     </div>
     <button type="reset" (click)="onClose()" class="btn btn-secondary">Wyjdź</button> 
-    <button *ngIf="add" class="btn btn-primary">Zapisz Add</button> 
-    <button *ngIf="!add" class="btn btn-primary">Zapisz Mod</button> 
+    <button class="btn btn-primary">Zapisz</button> 
 </form>

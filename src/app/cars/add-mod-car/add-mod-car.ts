@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CarModel } from '../../models/car-model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
+import { CarsService } from '../cars-service';
 
 @Component({
   selector: 'app-add-mod-car',
@@ -13,11 +14,14 @@ export class AddModCar {
 
   @Input() car!: CarModel;
 
-  carInputForm!: CarModel;
+  protected carInputForm!: CarModel;
 
-  add: boolean = true;
+  protected idCar: number = 0;
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(
+    public activeModal: NgbActiveModal,
+    protected readonly carsService: CarsService,
+  ) {}
 
   ngOnInit(): void {
     // console.log('car in modal', this.car);
@@ -25,17 +29,35 @@ export class AddModCar {
 
     if(this.car) {
       this.carInputForm = {brand: this.car.brand, model: this.car.model, price: this.car.price};
-      this.add = false;
+      this.idCar = this.car.id!;
     } else {
       this.carInputForm = {brand: '', model: '', price: 0};
     }
   }
 
-  onSave(formData: NgForm) {
-    this.activeModal.close({save: true});
+  private addNewCar(car: CarModel): void {
+    this.carsService.addCar(car).subscribe(() => {
+      this.activeModal.close({save: true});
+    });
   }
   
-  onClose() {
+  private modCar(car: CarModel): void {
+    this.carsService.modCar(this.idCar, car).subscribe(() => {
+      this.activeModal.close({save: true});
+    });
+  }
+  
+  
+  
+  protected onSave(formData: NgForm) {
+    
+    if(this.idCar > 0)
+      this.modCar(formData.value); 
+    else  
+      this.addNewCar(formData.value); 
+  }
+  
+  protected onClose() {
     this.activeModal.close({save: false});
   }
 

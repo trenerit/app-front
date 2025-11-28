@@ -49,9 +49,9 @@ export class MainCars {
 
     modalRef.result.then(
       (result) => {
-        const res = result.save;
-        if(res) {
-          this.getCars();
+        this.getCars();
+        if(result.save) {
+          console.log('if');
         }
       }
     )

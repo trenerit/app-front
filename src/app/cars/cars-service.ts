@@ -22,6 +22,14 @@ export class CarsService {
     return this.http.get<CarModel>(`${this.apiUrl}/${id}`);
   }
 
+  addCar(car: CarModel): Observable<CarModel> {
+    return this.http.post<CarModel>(`${this.apiUrl}`, car);
+  }
+  
+  modCar(idCar: number, car: CarModel): Observable<CarModel> {
+    return this.http.patch<CarModel>(`${this.apiUrl}/${idCar}`, car);
+  }
+
   delCar(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
