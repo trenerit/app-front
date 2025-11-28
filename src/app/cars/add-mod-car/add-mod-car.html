@@ -1,16 +1,19 @@
 <form #carForm="ngForm" (ngSubmit)="onSave(carForm)">
     <div>
         <label for="brand" class="form-label">Marka samochodu</label>
-        <input name="brand" [(ngModel)]="carInputForm.brand" class="form-control" id="brand">
+        <input name="brand" #brand="ngModel" [(ngModel)]="carInputForm.brand" class="form-control" id="brand" maxlength="20" required pattern="^[A-ź\s]{3,20}$">
+        <div *ngIf="brand.invalid && brand.touched" class="error">Błędnie uzupełnione pole Marka</div>
     </div>
     <div>
         <label for="model" class="form-label">Model samochodu</label>
-        <input name="model" [(ngModel)]="carInputForm.model" class="form-control" id="model">
+        <input name="model" #model="ngModel" [(ngModel)]="carInputForm.model" class="form-control" id="model" maxlength="20" required pattern="^[A-ź\s0-9\-_]{1,20}$">
+        <div *ngIf="model.invalid && model.touched" class="error">Błędnie uzupełnione pole Model</div>
     </div>
     <div>
         <label for="price" class="form-label">Cena za 1h</label>
-        <input name="price" [(ngModel)]="carInputForm.price" type="number" class="form-control" id="price">
+        <input name="price" #price="ngModel" [(ngModel)]="carInputForm.price" type="number" class="form-control" id="price" pattern="^[\d]{2,4}$">
+        <div *ngIf="price.invalid && price.touched" class="error">Błędnie uzupełnione pole Model</div>
     </div>
     <button type="reset" (click)="onClose()" class="btn btn-secondary">Wyjdź</button> 
-    <button class="btn btn-primary">Zapisz</button> 
+    <button [disabled]="carForm.invalid" class="btn btn-primary">Zapisz</button> 
 </form>
