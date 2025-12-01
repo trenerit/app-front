@@ -3,6 +3,8 @@ import { CarsService } from '../cars-service';
 import { CarModel } from '../../models/car-model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal';
 import { AddModCar } from '../add-mod-car/add-mod-car';
+import { SearchModel } from '../../models/search-model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-main-cars',
@@ -13,6 +15,11 @@ import { AddModCar } from '../add-mod-car/add-mod-car';
 export class MainCars {
 
   cars: CarModel[] = [];
+
+  searchForm: SearchModel = {
+    searchText: '',
+    column: '',
+  };
   
   constructor(
     private readonly carsService: CarsService,
