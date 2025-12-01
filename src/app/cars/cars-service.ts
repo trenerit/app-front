@@ -22,6 +22,10 @@ export class CarsService {
     return this.http.get<CarModel>(`${this.apiUrl}/${id}`);
   }
 
+  searchCars(search: object): Observable<CarModel[]> {
+    return this.http.post<CarModel[]>(`${this.apiUrl}/search`, search);
+  }
+
   addCar(car: CarModel): Observable<CarModel> {
     return this.http.post<CarModel>(`${this.apiUrl}`, car);
   }
@@ -33,5 +37,7 @@ export class CarsService {
   delCar(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
+
   
 }

@@ -64,4 +64,23 @@ export class MainCars {
     )
 
   }
+
+  searchCars() {
+    let search = {};
+
+    if (this.searchForm.column == 'brand') {
+      search = { brand: this.searchForm.searchText }
+    }
+    if (this.searchForm.column == 'model') {
+      search = { model: this.searchForm.searchText }
+    }
+    if (this.searchForm.column == 'price') {
+      search = { price: this.searchForm.searchText }
+    }
+    console.log(search)
+    this.carsService.searchCars(search).subscribe(data => {
+      this.cars = data;
+    }
+    )
+  }
 }
