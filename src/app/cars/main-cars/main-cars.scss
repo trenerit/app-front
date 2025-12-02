@@ -1,3 +1,20 @@
 tbody tr {
     cursor: pointer;
 }
+
+.searchForm {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 30px;
+    gap: 10px;
+
+    div {
+        flex-basis: 33.33333%;
+    }
+
+    input, select {
+        margin-right: 15px;
+        padding: 8px;
+    }
+}
