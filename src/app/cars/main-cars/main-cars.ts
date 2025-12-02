@@ -65,22 +65,20 @@ export class MainCars {
   }
 
   searchCars() {
-    let search = {column: this.searchForm.column, searchText: this.searchForm.searchText};
-
-    // if (this.searchForm.column == 'brand') {
-    //   search = {column: 'brand', searchText: this.searchForm.searchText}
-    // }
-    // if (this.searchForm.column == 'model') {
-    //   search = {column: 'model', searchText: this.searchForm.searchText}
-    // }
-    // if (this.searchForm.column == 'price') {
-    //   search = {column: 'price', searchText: this.searchForm.searchText}
-    // }
-    // console.log(search)
-  
+    const search = {column: this.searchForm.column, searchText: this.searchForm.searchText};
     this.carsService.searchCars(search).subscribe(data => {
       this.cars = data;
     }
     )
+  }
+
+  clickColumn(event: Event) {
+    event.stopPropagation();
+  }
+
+  onChange(event: Event, id: any) {
+    const checkbox = event.target as HTMLInputElement;
+    console.log(id, checkbox.checked);
+
   }
 }
