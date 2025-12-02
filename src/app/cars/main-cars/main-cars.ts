@@ -78,7 +78,14 @@ export class MainCars {
 
   onChange(event: Event, id: any) {
     const checkbox = event.target as HTMLInputElement;
-    console.log(id, checkbox.checked);
+    let is_checked = 0;
+    if(checkbox.checked) {
+      is_checked = 1;
+    }
+    this.carsService.modCarStatus(id, is_checked).subscribe(() => {
+      this.getCars();
+    });
 
   }
+  
 }

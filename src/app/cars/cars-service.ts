@@ -33,6 +33,10 @@ export class CarsService {
   modCar(idCar: number, car: CarModel): Observable<CarModel> {
     return this.http.patch<CarModel>(`${this.apiUrl}/${idCar}`, car);
   }
+  
+  modCarStatus(idCar: number, is_rented: number): Observable<CarModel> {
+    return this.http.put<CarModel>(`${this.apiUrl}/${idCar}`, {is_rented});
+  }
 
   delCar(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);

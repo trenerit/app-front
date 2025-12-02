@@ -33,10 +33,10 @@ export class AddModCar {
 
     if(this.car) {
 
-      this.carInputForm = {brand: this.car.brand, model: this.car.model, price: this.car.price};
+      this.carInputForm = {brand: this.car.brand, model: this.car.model, price: this.car.price, is_rented: this.car.is_rented};
       this.idCar = this.car.id!;
     } else {
-      this.carInputForm = {brand: '', model: '', price: 0};
+      this.carInputForm = {brand: '', model: '', price: 0, is_rented: 0};
     }
   }
 
