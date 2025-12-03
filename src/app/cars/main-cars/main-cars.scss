@@ -31,19 +31,30 @@
 
 .filters {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
-  align-items: end;
+  align-items: center;
+}
+
+.filters .input-shell {
+  min-height: 100%;
+}
+
+.filters .input-label {
+  margin-bottom: 6px;
 }
 
 .filters small {
   font-size: 13px;
+  display: block;
+  margin-top: 6px;
 }
 
 .filter-actions {
   display: flex;
   gap: 10px;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .cars-grid {
@@ -164,6 +175,7 @@
 .card-actions {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .btn.danger {

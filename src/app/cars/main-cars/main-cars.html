@@ -41,12 +41,12 @@
 
     <div class="filter-actions">
       <button class="btn soft" type="button" (click)="searchCars()">Filtruj</button>
-      <button class="btn ghost" type="button" (click)="searchForm.searchText = ''; searchCars()">Wyczyść</button>
+      <button class="btn ghost" type="button" (click)="searchForm.searchText = ''; searchForm.column = 'brand'; searchCars()">Wyczyść</button>
     </div>
   </form>
 
   <div class="cars-grid">
-    @for (car of cars; track car; let i = $index) {
+    @for (car of cars; track car.id; let i = $index) {
       <article class="car-card" [class.is-rented]="car.is_rented == 1" [routerLink]="['/view-car', car.id]">
         <div class="card-top">
           <span class="status-badge" [class.busy]="car.is_rented == 1">

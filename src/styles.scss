@@ -152,16 +152,22 @@ p {
 
 /* Custom modal baseline styles for ng-bootstrap */
 .modal {
+  position: fixed;
+  inset: 0;
   display: flex !important;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  overflow: auto;
+  z-index: 2000;
 }
 
 .modal-dialog {
   max-width: 720px;
   width: 100%;
-  margin: 0;
+  margin: auto;
+  position: relative;
+  z-index: 2010;
 }
 
 .modal-content {
@@ -173,6 +179,13 @@ p {
 }
 
 .modal-backdrop {
+  position: fixed;
+  inset: 0;
   background: rgba(6, 15, 43, 0.62);
   backdrop-filter: blur(4px);
+  z-index: 1990;
+}
+
+body.modal-open {
+  overflow: hidden;
 }
