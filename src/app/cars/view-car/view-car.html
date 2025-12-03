@@ -1,17 +1,26 @@
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Marka</th>
-            <th>Model</th>
-            <th>Cena za 1h</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{car?.brand}}</td><td>{{car?.model}}</td><td>{{car?.price}}</td>
-        </tr>
-    </tbody>
+<section class="car-details card">
+  <div class="details-head">
+    <span class="pill">Szczegóły auta</span>
+    <h2>{{car?.brand}} {{car?.model}}</h2>
+    <p class="muted">Podsumowanie danych w bazie oraz aktualna cena za godzinę.</p>
+  </div>
 
-</table>
+  <div class="details-grid">
+    <div class="detail">
+      <p class="muted">Marka</p>
+      <h3>{{car?.brand}}</h3>
+    </div>
+    <div class="detail">
+      <p class="muted">Model</p>
+      <h3>{{car?.model}}</h3>
+    </div>
+    <div class="detail">
+      <p class="muted">Cena za 1h</p>
+      <h3 class="price">{{car?.price}} zł</h3>
+    </div>
+  </div>
 
-<a class="btn btn-secondary" [routerLink]="['/main-cars']">Wstecz</a>
+  <div class="details-actions">
+    <a class="btn ghost" [routerLink]="['/main-cars']">Wstecz</a>
+  </div>
+</section>

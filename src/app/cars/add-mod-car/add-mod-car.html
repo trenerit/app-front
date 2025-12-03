@@ -1,19 +1,33 @@
-<form #carForm="ngForm" (ngSubmit)="onSave(carForm)">
-    <div>
-        <label for="brand" class="form-label">Marka samochodu</label>
-        <input name="brand" #brand="ngModel" [(ngModel)]="carInputForm.brand" class="form-control" id="brand" maxlength="20" required pattern="^[A-ź\s]{3,20}$">
-        <div *ngIf="brand.invalid && brand.touched" class="error">Błędnie uzupełnione pole Marka</div>
+<div class="modal-head">
+  <span class="pill">Formularz</span>
+  <div>
+    <h3>{{ car ? 'Edytuj auto' : 'Dodaj nowe auto' }}</h3>
+    <p class="muted">Uzupełnij dane samochodu i zapisz, aby dodać do floty.</p>
+  </div>
+</div>
+
+<form #carForm="ngForm" (ngSubmit)="onSave(carForm)" class="car-form">
+  <div class="field-grid">
+    <div class="input-shell">
+      <label for="brand" class="input-label">Marka samochodu</label>
+      <input name="brand" #brand="ngModel" [(ngModel)]="carInputForm.brand" class="text-input" id="brand" maxlength="20" required pattern="^[A-ź\s]{3,20}$" placeholder="np. Volvo">
+      <div *ngIf="brand.invalid && brand.touched" class="error">Błędnie uzupełnione pole Marka</div>
     </div>
-    <div>
-        <label for="model" class="form-label">Model samochodu</label>
-        <input name="model" #model="ngModel" [(ngModel)]="carInputForm.model" class="form-control" id="model" maxlength="20" required pattern="^[A-ź\s0-9\-_]{1,20}$">
-        <div *ngIf="model.invalid && model.touched" class="error">Błędnie uzupełnione pole Model</div>
+    <div class="input-shell">
+      <label for="model" class="input-label">Model samochodu</label>
+      <input name="model" #model="ngModel" [(ngModel)]="carInputForm.model" class="text-input" id="model" maxlength="20" required pattern="^[A-ź\s0-9\-_]{1,20}$" placeholder="np. XC90">
+      <div *ngIf="model.invalid && model.touched" class="error">Błędnie uzupełnione pole Model</div>
     </div>
-    <div>
-        <label for="price" class="form-label">Cena za 1h</label>
-        <input name="price" #price="ngModel" [(ngModel)]="carInputForm.price" type="number" class="form-control" id="price" pattern="^[\d]{2,4}$">
-        <div *ngIf="price.invalid && price.touched" class="error">Błędnie uzupełnione pole Model</div>
+  </div>
+  <div class="field-grid">
+    <div class="input-shell">
+      <label for="price" class="input-label">Cena za 1h</label>
+      <input name="price" #price="ngModel" [(ngModel)]="carInputForm.price" type="number" class="text-input" id="price" pattern="^[\d]{2,4}$" placeholder="np. 120">
+      <div *ngIf="price.invalid && price.touched" class="error">Błędnie uzupełnione pole Cena</div>
     </div>
-    <button type="reset" (click)="onClose()" class="btn btn-secondary">Wyjdź</button> 
-    <button [disabled]="carForm.invalid" class="btn btn-primary">Zapisz</button> 
+  </div>
+  <div class="form-actions">
+    <button type="reset" (click)="onClose()" class="btn ghost">Anuluj</button> 
+    <button [disabled]="carForm.invalid" class="btn primary">Zapisz</button> 
+  </div>
 </form>

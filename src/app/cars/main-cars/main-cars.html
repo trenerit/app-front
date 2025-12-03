@@ -1,55 +1,84 @@
-<form class="searchForm" autocomplete="off">
-  <div>
-    <input (keyup)="searchCars()" placeholder="Wpisz szukaną frazę" name="searchText" #searchText="ngModel" [(ngModel)]="searchForm.searchText" class="form-control" maxlength="20"
-      required pattern="^[A-ź\s0-9\-]{2,20}$">
-    <!-- <div *ngIf="brand.invalid && brand.touched" class="error">Błędnie uzupełnione pole Marka</div> -->
+<section class="cars-page card">
+  <div class="page-header">
+    <div class="title-block">
+      <span class="pill">Panel floty</span>
+      <div>
+        <h2>Samochody</h2>
+        <p>Zarządzaj flotą, zmieniaj statusy i dodawaj nowe pojazdy.</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button type="button" class="btn ghost" (click)="getCars()">Odśwież listę</button>
+      <button (click)="openModal()" type="button" class="btn primary">+ Dodaj auto</button>
+    </div>
   </div>
-  
-  <div>
-    <select (change)="searchCars()" class="form-select" name="column" #column="ngModel" [(ngModel)]="searchForm.column">
-      <option value="brand">Marka</option>
-      <option value="model">Model</option>
-      <option value="price">Cena</option>
-    </select>
-  </div>
-  <!-- <div>
-    <button class="btn btn-outline-secondary" type="button" (click)="searchCars()">Szukaj</button>
-  </div> -->
-</form>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Lp.</th>
-      <th scope="col">Marka</th>
-      <th scope="col">Model</th>
-      <th scope="col">Cena</th>
-      <th class="short-column" scope="col">Wypozyczony?</th>
-      <th scope="col">Opcje</th>
-    </tr>
-  </thead>
-  <tbody>
+  <form class="filters" autocomplete="off">
+    <div class="input-shell">
+      <label class="input-label" for="searchText">Fraza wyszukiwania</label>
+      <input
+        id="searchText"
+        (keyup)="searchCars()"
+        placeholder="np. Tesla, SUV, 150"
+        name="searchText"
+        #searchText="ngModel"
+        [(ngModel)]="searchForm.searchText"
+        class="text-input"
+        maxlength="20"
+        required
+        pattern="^[A-ź\s0-9\-]{2,20}$">
+      <small class="muted">Filtruje dynamicznie po wybranej kolumnie.</small>
+    </div>
+    
+    <div class="input-shell">
+      <label class="input-label" for="column">Szukaj w kolumnie</label>
+      <select (change)="searchCars()" class="select-input" name="column" id="column" #column="ngModel" [(ngModel)]="searchForm.column">
+        <option value="brand">Marka</option>
+        <option value="model">Model</option>
+        <option value="price">Cena</option>
+      </select>
+    </div>
+
+    <div class="filter-actions">
+      <button class="btn soft" type="button" (click)="searchCars()">Filtruj</button>
+      <button class="btn ghost" type="button" (click)="searchForm.searchText = ''; searchCars()">Wyczyść</button>
+    </div>
+  </form>
+
+  <div class="cars-grid">
     @for (car of cars; track car; let i = $index) {
-      <tr [ngClass]="{'table-danger' : car.is_rented == 1, 'table-success' : car.is_rented == 0}" [routerLink]="['/view-car', car.id]">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ car.brand }}</td>
-        <td>{{ car.model }}</td>
-        <td>{{ car.price }}zł</td>
-        <td (click)="clickColumn($event)">
-          <div class="form-check form-switch">
-            @if(car.is_rented == 0) {
-              <input (change)="onChange($event, car.id)" class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked">
-            } @else {
-              <input checked (change)="onChange($event, car.id)" class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked">
-            }
+      <article class="car-card" [class.is-rented]="car.is_rented == 1" [routerLink]="['/view-car', car.id]">
+        <div class="card-top">
+          <span class="status-badge" [class.busy]="car.is_rented == 1">
+            {{ car.is_rented == 1 ? 'Wypożyczony' : 'Dostępny' }}
+          </span>
+          <span class="price-tag">{{ car.price }} zł/h</span>
+        </div>
+        <div class="car-name">
+          <h3>{{ car.brand }}</h3>
+          <p class="muted">Model: {{ car.model }}</p>
+        </div>
+        <div class="card-meta">
+          <div class="toggle-shell" (click)="clickColumn($event)">
+            <span class="muted">Status</span>
+            <label class="switch">
+              <input
+                type="checkbox"
+                [checked]="car.is_rented == 1"
+                (change)="onChange($event, car.id)">
+              <span class="slider"></span>
+            </label>
           </div>
-        </td>
-        <td>
-          <button (click)="openModal('mod', $event, car)" type="button" class="btn btn-warning btn-sm">Modyfikuj</button>
-          <button (click)="delCar(car.id!, $event)" type="button" class="btn btn-danger btn-sm">Usuń</button>
-        </td>
-      </tr>
+          <div class="card-actions" (click)="clickColumn($event)">
+            <button (click)="openModal('mod', $event, car)" type="button" class="btn soft">Edytuj</button>
+            <button (click)="delCar(car.id!, $event)" type="button" class="btn ghost danger">Usuń</button>
+          </div>
+        </div>
+        <div class="meta-footer">
+          <span class="muted">Lp. {{ i + 1 }}</span>
+          <span class="muted">ID: {{ car.id }}</span>
+        </div>
+      </article>
     }
-  </tbody>
-</table>
-<button (click)="openModal()" type="button" class="btn btn-primary">Dodaj</button>
+  </div>
+</section>

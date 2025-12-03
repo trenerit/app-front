@@ -1,0 +1,36 @@
+.car-details {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.details-head h2 {
+  margin-top: 4px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.detail {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #f8fafc;
+}
+
+.detail h3 {
+  margin-top: 6px;
+}
+
+.price {
+  color: var(--primary);
+}
+
+.details-actions {
+  display: flex;
+  justify-content: flex-end;
+}
