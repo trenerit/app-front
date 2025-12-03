@@ -18,6 +18,7 @@ export class MainCars {
   searchForm: SearchModel = {
     searchText: '',
     column: 'brand',
+    status: 'all'
   };
   
   constructor(
@@ -65,7 +66,7 @@ export class MainCars {
   }
 
   searchCars() {
-    const search = {column: this.searchForm.column, searchText: this.searchForm.searchText};
+    const search = {column: this.searchForm.column, searchText: this.searchForm.searchText, status: this.searchForm.status};
     this.carsService.searchCars(search).subscribe(data => {
       this.cars = data;
     }
@@ -83,7 +84,8 @@ export class MainCars {
       is_checked = 1;
     }
     this.carsService.modCarStatus(id, is_checked).subscribe(() => {
-      this.getCars();
+      // this.getCars();
+      this.searchCars();
     });
 
   }

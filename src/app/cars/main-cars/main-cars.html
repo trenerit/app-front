@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="header-actions">
-      <button type="button" class="btn ghost" (click)="getCars()">Odśwież listę</button>
+      <!-- <button type="button" class="btn ghost" (click)="getCars()">Odśwież listę</button> -->
       <button (click)="openModal()" type="button" class="btn primary">+ Dodaj auto</button>
     </div>
   </div>
@@ -38,10 +38,19 @@
         <option value="price">Cena</option>
       </select>
     </div>
+    
+    <div class="input-shell">
+      <label class="input-label" for="column">Szukaj w kolumnie</label>
+      <select (change)="searchCars()" class="select-input" name="status" id="status" #status="ngModel" [(ngModel)]="searchForm.status">
+        <option value="all">Wszystkie</option>
+        <option value="free">Wolne</option>
+        <option value="rented">Zarezerwowane</option>
+      </select>
+    </div>
 
     <div class="filter-actions">
       <button class="btn soft" type="button" (click)="searchCars()">Filtruj</button>
-      <button class="btn ghost" type="button" (click)="searchForm.searchText = ''; searchForm.column = 'brand'; searchCars()">Wyczyść</button>
+      <button class="btn ghost" type="button" (click)="searchForm.searchText = ''; searchForm.column = 'brand'; searchForm.status = 'all'; searchCars()">Wyczyść</button>
     </div>
   </form>
 
