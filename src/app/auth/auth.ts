@@ -15,7 +15,6 @@ export class Auth {
     this.login('pkania', 'Tebik1234').subscribe((res) => {console.log(res)});
   }
 
-
   login(login: string, password: string): Observable<{access_token: string}> {
     console.log(login, password);
     return this.http.post<{access_token: string}>(`${this.apiUrl}/auth/login`, {login, password}).pipe(
