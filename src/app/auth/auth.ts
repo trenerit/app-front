@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { Observable, tap } from 'rxjs';
@@ -11,8 +11,8 @@ export class Auth {
   private apiUrl ='http://localhost:3000';
 
   constructor(private readonly http: HttpClient) {
-    console.log('test constructor');
-    this.login('pkania', 'Tebik1234').subscribe((res) => {console.log(res)});
+    // console.log('test constructor');
+    // this.login('pkania', 'Tebik1234').subscribe((res) => {console.log(res)});
   }
 
   login(login: string, password: string): Observable<{access_token: string}> {
