@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CarModel } from '../models/car-model';
+import { Auth } from '../auth/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +12,16 @@ export class CarsService {
   apiUrl = 'http://localhost:3000/car';
   
   constructor(
-    private readonly http: HttpClient
+    private readonly http: HttpClient, private readonly authService: Auth
   ) {}
 
+  ngOnInit() {
+    this.authService.login('pkania', 'Tebik1234').subscribe((res) => {console.log(res)});
+  }
+
   getCars(): Observable<CarModel[]> {
-    return this.http.get<CarModel[]>(`${this.apiUrl}`);
+
+    return this.http.get<CarModel[]>(`${this.apiUrl}`, {headers: {Authorization:  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImxvZ2luIjoicGthbmlhIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NjUzNDUwMTMsImV4cCI6MTc2NTM0ODYxM30.HQoiyIIiIyMbBuYsCiljjfX9VrPxV9XSljrHrbjppyc"}});
   }
   
   getCar(id: number): Observable<CarModel> {
