@@ -17,7 +17,7 @@ export class CarsService {
 
   getCars(): Observable<CarModel[]> {
     // this.authService.login('pkania', 'Tebik1234').subscribe();
-    return this.http.get<CarModel[]>(`${this.apiUrl}`);
+    return this.http.get<CarModel[]>(`${this.apiUrl}`, {headers: {Authorization:  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImxvZ2luIjoicGthbmlhIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NjUzOTkwNDAsImV4cCI6MTc2NTQwMjY0MH0.baXfTHlgsNkrQzcSNg5uNZ9821Eiw9_qVbwTo4WJxc8"}});
   }
   
   getCar(id: number): Observable<CarModel> {

@@ -5,14 +5,15 @@ import { Auth } from './auth';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(Auth);
   const token = authService.getToken();
-  if (token) {
-    const authReq = req.clone({
+
+  // const token = sessionStorage.getItem('access_token');
+
+   if(token) {
+    req = req.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`
       }
     });
-
-    return next(authReq);
   }
 
   return next(req);

@@ -26,8 +26,10 @@ import { authInterceptor } from './auth/auth-interceptor';
     FormsModule
   ],
   providers: [
+    // Uywamy teraz providers zamiast HttpClientModule
+    // provideHttpClient(),
     provideHttpClient(withInterceptors([authInterceptor])),
-    provideBrowserGlobalErrorListeners(),
+    // provideBrowserGlobalErrorListeners(),
   ],
   bootstrap: [App]
 })

@@ -34,14 +34,11 @@ export class MainCars {
   getCars(): void {
     this.carsService.getCars().subscribe(data => {
       console.log('main-cars', data);
+      this.cars = data;
       console.log('main-cars2', this.cars);
-      this.updatePage(data);
     });
   }
   
-  updatePage(data: any) {
-    this.cars = data;
-  }
 
   delCar(id: number, e :Event): void {
     e.stopPropagation();
