@@ -9,7 +9,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { SharedModule } from './shared/shared-module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { jwtInterceptor } from './auth/jwt.interceptor';
+import { authInterceptor } from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { jwtInterceptor } from './auth/jwt.interceptor';
   providers: [
     provideBrowserGlobalErrorListeners(),
     // Uywamy teraz providers zamiast HttpClientModule
-    provideHttpClient(withInterceptors([jwtInterceptor]))
+    provideHttpClient(withInterceptors([authInterceptor]))
   ],
   bootstrap: [App]
 })
