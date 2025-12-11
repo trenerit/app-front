@@ -11,25 +11,25 @@ export class Auth {
   private apiUrl ='http://localhost:3000';
 
   constructor(private readonly http: HttpClient) {
-    console.log('test constructor');
-    this.login('pkania', 'Tebik1234').subscribe((res) => {console.log(res)});
+    // console.log('test constructor');
+    // this.login('pkania', 'Tebik1234').subscribe((res) => {console.log(res)});
   }
 
   login(login: string, password: string): Observable<{access_token: string}> {
     console.log(login, password);
     return this.http.post<{access_token: string}>(`${this.apiUrl}/auth/login`, {login, password}).pipe(
       tap(res => {
-        sessionStorage.setItem('session_token', res.access_token);
+        sessionStorage.setItem('access_token', res.access_token);
       })
     );
   }
 
   logout() {
-    sessionStorage.removeItem('session_token');
+    sessionStorage.removeItem('access_token');
   }
 
   getToken() {
-    return sessionStorage.getItem('session_token');
+    return sessionStorage.getItem('access_token');
   }
 
   isLoggedIn(): boolean {
