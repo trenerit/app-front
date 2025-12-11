@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { Observable, tap } from 'rxjs';
 
@@ -10,22 +11,33 @@ export class Auth {
 
   private apiUrl ='http://localhost:3000';
 
-  constructor(private readonly http: HttpClient) {
-    // console.log('test constructor');
-    // this.login('pkania', 'Tebik1234').subscribe((res) => {console.log(res)});
-  }
+  constructor(
+    private readonly http: HttpClient,
+    private readonly router: Router
+  ) {}
 
   login(login: string, password: string): Observable<{access_token: string}> {
     
+    console.log(login, password);
+
     return this.http.post<{access_token: string}>(`${this.apiUrl}/auth/login`, {login, password}).pipe(
       tap(res => {
-        sessionStorage.setItem('access_token', res.access_token);
+        if(res && res.access_token) {
+          sessionStorage.setItem('access_token', res.access_token);
+          this.router.navigate(['/main-cars']);
+          return;
+        } else {
+          this.router.navigate(['/login']);
+          return;
+        }
       })
     );
   }
 
   logout() {
     sessionStorage.removeItem('access_token');
+    this.router.navigate(['/login']);
+    return;
   }
 
   getToken() {

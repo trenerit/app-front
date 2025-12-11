@@ -13,9 +13,9 @@ export class Login {
 
   submitData(data: any) {
 
-    // console.log(data.value);
+    console.log(data.value);
 
-    this.authService.login(data.value.login, data.value.password);
+    this.authService.login(`${data.value.login}`, `${data.value.password}`).subscribe();
 
   }
 
