@@ -1,0 +1,11 @@
+<form #formLogin="ngForm" (ngSubmit)="submitData(formLogin)">
+
+    <label for="login">Podaj Twój login</label>
+    <input ngModel type="text" id="login" name="login">
+    
+    <label for="password">Podaj hasło</label>
+    <input ngModel type="password" id="password" name="password">
+
+    <button type="submit">Zaloguj</button>
+
+</form>
